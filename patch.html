@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>PUT</title>
+    <title>PATCH</title>
     <style>
         label {
             display: block;
@@ -24,11 +24,11 @@
     </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PUT</title>
+    <title>PATCH</title>
 </head>
 
 <body>
-    <h2>Put User</h2>
+    <h2>Patch User</h2>
     <form id="user_form">
         <label for="id">ID:</label>
         <input type="text" id="id" name="id">
@@ -58,7 +58,7 @@
             e.preventDefault(); // prevents from the page to reload
             //document.getElementsByTagName('body')[0].innerHTML += "Done."
 
-            const put_user = {
+            const patch_user = {
                 id: document.getElementById('id').value,
                 name: document.getElementById('name').value,
                 address: {
@@ -69,39 +69,39 @@
                 website: document.getElementById('website').value,
             }
 
-            if (put_user.id == '') {
-                delete put_user.id
+            if (patch_user.id == '') {
+                delete patch_user.id
             }
-            if (put_user.name == '') {
-                delete put_user.name
+            if (patch_user.name == '') {
+                delete patch_user.name
             }
-            if (put_user.address.city == '') {
-                delete put_user.address
+            if (patch_user.address.city == '') {
+                delete patch_user.address
             }
-            if (put_user.email == '') {
-                delete put_user.email
+            if (patch_user.email == '') {
+                delete patch_user.email
             }
-            if (put_user.username == '') {
-                delete put_user.username
+            if (patch_user.username == '') {
+                delete patch_user.username
             }
-            if (put_user.phone == '') {
-                delete put_user.phone
+            if (patch_user.phone == '') {
+                delete patch_user.phone
             }
-            if (put_user.website == '') {
-                delete put_user.website
-            }  
+            if (patch_user.website == '') {
+                delete patch_user.website
+            }                                                                        
 
             const send_details = {
-                method: 'PUT',
+                method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(put_user)
+                body: JSON.stringify(patch_user)
             }
             fetch(`http://localhost:3000/users/${document.getElementById('id').value}`, send_details)
             .then(response => response.json())
             .then(data => {
-                alert('user updated (put)')
+                alert('user patched')
             })
         }
 

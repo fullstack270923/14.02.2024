@@ -46,8 +46,9 @@
                 // ...
             }
             // Ajaj
-            fetch('http://localhost:3000/users/')
+            fetch('http://localhost:3000/users/') 
                 .then(response => {
+                    console.log(response);
                     if (response.status === 404) {
                         document.write('Not found')
                         return null;
