@@ -63,20 +63,21 @@
                     users.forEach(user => {
                         const row = tbody.insertRow();
                         row.insertCell().textContent = user.id;
-                        row.insertCell().textContent = user.name;
+                        row.insertCell().innerHTML = `<input type="text" value="${user.name}">`;
                         row.insertCell().textContent = user.username;
                         row.insertCell().textContent = user.email;
                         row.insertCell().textContent = user.address.city;
                         row.insertCell().textContent = user.phone;
                         row.insertCell().textContent = user.website;
                         let deleteCell = row.insertCell();
-                        deleteCell.innerHTML = '<button class="btn-delete" onclick="deleteUser('+user.id+')">Delete</button>';
+                        deleteCell.innerHTML = `<button class="btn-delete" onclick="deleteUser('${user.id}')">Delete</button>`;
                     });
                 });
         }
 
         function deleteUser(userId) {
-            fetch('http://localhost:3000/users/' + userId, { method: 'DELETE' })
+            fetch(`http://localhost:3000/users/${userId}`, 
+                  { method: 'DELETE' })
                 .then(() => fetchUsers()) // Refresh the list after delete
                 .catch(error => console.error('Error:', error));
         }
@@ -97,7 +98,7 @@
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(newUser)
+                body: JSON.stringify({newUser})
             })
             .then(response => response.json())
             .then(() => {
